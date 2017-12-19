@@ -1,11 +1,15 @@
 # Haskell package checklist
 
-This post covers everything you need to know about developing a Haskell
-package. I wrote it because I made a few packages and nothing covers the entire
-process. The [Cabal user guide][1] provides good low-level information, and
-Sebastiaan Visser's [Towards a better Haskell package][2] gives some nice
-high-level guidance. This post covers both of those and fills in some of the
-gaps left by them.
+This checklsit covers everything you need to know about developing a Haskell package.
+The [Cabal user guide](https://cabal.readthedocs.io/en/latest/developing-packages.html#developing-packages) provides good low-level information,
+and @sebastiaanvisser's [Towards a better Haskell package](http://fvisser.nl/post/2013/may/28/towards-a-better-haskell-package.html) gives some nice high-level guidance.
+This checklist covers both of those and fills in some of the gaps left by them.
+It was adapted from @tfausak's [Haskell package checklist](http://taylor.fausak.me/2016/12/05/haskell-package-checklist/).
+
+If you're looking for a starting point that ticks most of these boxes, consider the [Haskeleton](http://taylor.fausak.me/2014/03/04/haskeleton-a-haskell-project-skeleton/) Stack template.
+It will give you a good base to start from.
+If you're looking for an actual package that follows the guidelines, check out [Rattletrap](http://taylor.fausak.me/2016/11/15/parse-and-generate-rocket-league-replays-with-haskell/), a Rocket League replay parser and generator.
+It can show you exactly how some of these things are implemented.
 
 - **Use Git for source control.** If it's not in source control, it doesn't
   exist. Git is the most popular choice, but its interface can be difficult to
@@ -152,14 +156,3 @@ gaps left by them.
   `TRAVIS_TAG` environment variable. If that's set, you can run
   `stack upload .` to upload your package. Travis CI will need your Hackage
   credentials, so be sure not to leak those into the build log.
-
-If you're looking for a starting point that ticks most of these boxes, consider
-my [Haskeleton][3] Stack template. It will give you a good base to start from.
-If you're looking for an actual package that follows the guidelines, check out
-[Rattletrap][4], my Rocket League replay parser and generator. It can show you
-exactly how some of these things are implemented.
-
-[1]: https://www.haskell.org/cabal/users-guide/developing-packages.html
-[2]: http://fvisser.nl/post/2013/may/28/towards-a-better-haskell-package.html
-[3]: http://taylor.fausak.me/2014/03/04/haskeleton-a-haskell-project-skeleton/
-[4]: http://taylor.fausak.me/2016/11/15/parse-and-generate-rocket-league-replays-with-haskell/
