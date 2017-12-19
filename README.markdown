@@ -11,6 +11,33 @@ It will give you a good base to start from.
 If you're looking for an actual package that follows the guidelines, check out [Rattletrap](http://taylor.fausak.me/2016/11/15/parse-and-generate-rocket-league-replays-with-haskell/), a Rocket League replay parser and generator.
 It can show you exactly how some of these things are implemented.
 
+- [Use Git for source control](#use-git-for-source-control)
+- [Host on GitHub](#host-on-github)
+- [Build with Stack](#build-with-stack)
+- [Define with hpack](#define-with-hpack)
+- [Name with kebab-case](#name-with-kebab-case)
+- [Use Semantic Versioning](#use-semantic-versioning)
+- [License your package](#license-your-package)
+- [Write a README](#write-a-readme)
+- [Keep a change log](#keep-a-change-log)
+- [Write a `synopsis`](#write-a-synopsis)
+- [Avoid heavy dependencies](#avoid-heavy-dependencies)
+- [Include `extra-source-files`](#include-extra-source-files)
+- [Fix package warnings](#fix-package-warnings)
+- [Put Haskell files in `source/`](#put-haskell-files-in-source)
+- [Match package and module names](#match-package-and-module-names)
+- [Require one import](#require-one-import)
+- [Expose implementation details](#expose-implementation-details)
+- [Build `-Wall` clean](#build--wall-clean)
+- [Follow most HLint suggestions](#follow-most-hlint-suggestions)
+- [Format code with hindent](#format-code-with-hindent)
+- [Write documentation with examples](#write-documentation-with-examples)
+- [Test with Tasty using Hspec](#test-with-tasty-using-hspec)
+- [Run tests on Travis CI](#run-tests-on-travis-ci)
+- [Keep executables small](#keep-executables-small)
+- [Benchmark with Criterion](#benchmark-with-criterion)
+- [Automate releases](#automate-releases)
+
 ## Use Git for source control
 
 If it's not in source control, it doesn't
