@@ -1,10 +1,10 @@
 # Haskell package checklist
 
-This checklsit covers everything you need to know about developing a Haskell package.
+This checklist covers everything you need to know about developing a Haskell package.
 The [Cabal user guide](https://cabal.readthedocs.io/en/latest/developing-packages.html#developing-packages) provides good low-level information,
-and @sebastiaanvisser's [Towards a better Haskell package](http://fvisser.nl/post/2013/may/28/towards-a-better-haskell-package.html) gives some nice high-level guidance.
+and @sebastiaanvisser's post "[Towards a better Haskell package](http://fvisser.nl/post/2013/may/28/towards-a-better-haskell-package.html)" gives some nice high-level guidance.
 This checklist covers both of those and fills in some of the gaps left by them.
-It was adapted from @tfausak's [Haskell package checklist](http://taylor.fausak.me/2016/12/05/haskell-package-checklist/).
+It was adapted from @tfausak's post "[Haskell package checklist](http://taylor.fausak.me/2016/12/05/haskell-package-checklist/)".
 
 If you're looking for a starting point that ticks most of these boxes, consider the [Haskeleton](http://taylor.fausak.me/2014/03/04/haskeleton-a-haskell-project-skeleton/) Stack template.
 It will give you a good base to start from.
@@ -15,24 +15,24 @@ It can show you exactly how some of these things are implemented.
 - [Host on GitHub](#host-on-github)
 - [Build with Stack](#build-with-stack)
 - [Define with hpack](#define-with-hpack)
-- [Name with kebab-case](#name-with-kebab-case)
+- [Name with kebab case](#name-with-kebab-case)
 - [Use Semantic Versioning](#use-semantic-versioning)
-- [License your package](#license-your-package)
+- [Choose a license](#choose-a-license)
 - [Write a README](#write-a-readme)
 - [Keep a change log](#keep-a-change-log)
-- [Write a `synopsis`](#write-a-synopsis)
+- [Write a synopsis](#write-a-synopsis)
 - [Avoid heavy dependencies](#avoid-heavy-dependencies)
-- [Include `extra-source-files`](#include-extra-source-files)
+- [Include extra source files](#include-extra-source-files)
 - [Fix package warnings](#fix-package-warnings)
-- [Put Haskell files in `source/`](#put-haskell-files-in-source)
+- [Separate source files from metadata](#separate-source-files-from-metadata)
 - [Match package and module names](#match-package-and-module-names)
 - [Require one import](#require-one-import)
 - [Expose implementation details](#expose-implementation-details)
-- [Build `-Wall` clean](#build--wall-clean)
-- [Follow most HLint suggestions](#follow-most-hlint-suggestions)
-- [Format code with hindent](#format-code-with-hindent)
+- [Fix all GHC warnings](#fix-all-ghc-warnings)
+- [Follow HLint suggestions](#follow-hlint-suggestions)
+- [Format code with Brittany](#format-code-with-brittany)
 - [Write documentation with examples](#write-documentation-with-examples)
-- [Test with Tasty using Hspec](#test-with-tasty-using-hspec)
+- [Test with Hspec](#test-with-hspec)
 - [Run tests on Travis CI](#run-tests-on-travis-ci)
 - [Keep executables small](#keep-executables-small)
 - [Benchmark with Criterion](#benchmark-with-criterion)
@@ -41,28 +41,28 @@ It can show you exactly how some of these things are implemented.
 ## Use Git for source control
 
 If it's not in source control, it doesn't exist.
-Git is the most popular choice, but its interface can be difficult to understand.
+[Git](https://git-scm.com) is the most popular choice, but its interface can be difficult to understand.
 Consider using a GUI like GitHub Desktop.
 
 ## Host on GitHub
 
-GitHub allows other developers to easily contribute to your package.
+[GitHub](https://github.com) allows other developers to easily contribute to your package.
 Compared to other hosts, you are more likely to receive contributions.
 Also GitHub integrates nicely with many other services.
 
 ## Build with Stack
 
-Stack painlessly manages Haskell dependencies.
+[Stack](https://docs.haskellstack.org/en/stable/README/) painlessly manages Haskell dependencies.
 It installs GHC for you and ensures you get a build plan that actually works.
 If your package builds today, Stack ensures it will continue to build tomorrow.
 
 ## Define with hpack
 
 The default Cabal package file format is custom, tedious, and verbose.
-hpack uses YAML and avoids unnecessary boilerplate.
+[hpack](https://github.com/sol/hpack) uses YAML and avoids unnecessary boilerplate.
 Stack integrates hpack to automatically convert your `package.yaml` into a `*.cabal` file when necessary.
 
-## Name with kebab-case
+## Name with kebab case
 
 Keep everything lowercase to avoid confusion.
 You don't want people trying to install `http` when they really meant `HTTP`.
@@ -71,16 +71,16 @@ Nobody wants to type out `hypertext-transfer-protocol`.
 
 ## Use Semantic Versioning
 
-Unfortunately Hackage recommends the Package Versioning Policy.
+Unfortunately Hackage recommends the [Package Versioning Policy](https://pvp.haskell.org).
 The PVP adds ambiguity by using two major version numbers.
 That encourages packages to stay on major version 0, which doesn't inspire confidence.
-Many other languages use Semantic Versioning.
+Many other languages use [Semantic Versioning](https://semver.org).
 SemVer matches how developers generally think about version numbers.
 
-## License your package
+## Choose a license
 
 Nobody can use a package without a license.
-The most popular license for Haskell is BSD 3-Clause, followed by MIT.
+The most popular license for Haskell is [BSD 3-Clause](https://choosealicense.com/licenses/bsd-3-clause-clear/), followed by MIT.
 Whichever license you choose, include the license file in your package.
 
 ## Write a README
@@ -96,20 +96,17 @@ Most packages will use Git tags to mark releases, but reading diffs is not an ac
 Put a human-readable summary of changes in the GitHub releases.
 Then link to that from your `CHANGELOG.markdown`.
 
-## Write a `synopsis`
+## Write a synopsis
 
-This shows up when searching and viewing your package.
+The `synopsis` shows up when searching and viewing your package.
 Keep it short, imperative, and descriptive.
 Also write a `description`, which can be pretty much the same as the `synopsis`.
 For example:
 
 ``` yaml
-name:
-  aeson
-synopsis:
-  Encode and decode JSON.
-description:
-  Aeson encodes and decodes JSON.
+name: aeson
+synopsis: Encode and decode JSON.
+description: Aeson encodes and decodes JSON.
 ```
 
 ## Avoid heavy dependencies
@@ -120,7 +117,7 @@ For example, you should probably avoid `lens` even though it makes code easier t
 In addition to avoiding heavy dependencies, you should avoid having too many dependencies.
 Think about how long it would take to install your package starting from scratch.
 
-## Include `extra-source-files`
+## Include extra source files
 
 If a file is necessary for your package to build, it belongs in `extra-source-files`.
 This includes files that tests and benchmarks need.
@@ -132,17 +129,16 @@ Note that you don't need to include your license file if your package's `license
 Stack prints these out when you run `stack sdist`.
 You should fix all of them, even though some aren't that useful.
 For instance, Stack warns you if you don't set a category even though the categories on Hackage aren't that useful.
-To fix warnings about version bounds, consider using `--pvp-bounds=both`.
 
-## Put Haskell files in `source/`
+## Separate source files from metadata
 
 In other words, separate your package metadata from actual source files.
 This makes it easy to write scripts that work on every Haskell file, like formatting or counting lines of code.
 The exact names aren't important, but you should end up with a structure like this:
 
-- `source/library/YourPackage.hs`
-- `source/executables/Main.hs`
-- `source/tests/Main.hs`
+- `library/YourPackage.hs`
+- `executables/Main.hs`
+- `tests/Main.hs`
 
 ## Match package and module names
 
@@ -162,27 +158,27 @@ People will want to use your package in ways you didn't think of.
 Make everything public, but not necessarily part of your published API.
 Use `Internal` module names like `Data.Text.Internal` to signal that things aren't published.
 
-## Build `-Wall` clean
+## Fix all GHC warnings
 
 GHC finds all kinds of problems with `-Wall`.
 Few of them are false positives and they generally help you write better code.
-But if you don't like one, disable it with `-fno-warn-whatever`.
+But if you don't like one, disable it with `-Wno-warn-whatever`.
 Be sure to use `stack build --pedantic` when developing your package.
 It will force you to fix warnings.
 
-## Follow most HLint suggestions
+## Follow HLint suggestions
 
-Overall HLint is a great tool for improving code quality.
+[HLint](https://github.com/ndmitchell/hlint) is a great tool for improving code quality.
 However some suggestions aren't worth following.
 For example, the re-export shortcut suggestion breaks the Haddock documentation.
 Use your own judgment when deciding which suggestions to follow.
 
-## Format code with hindent
+## Format code with Brittany
 
-hindent is the closest thing we have to a community style.
+[Brittany](https://github.com/lspitzner/brittany) is a robust and customizable Haskell source code formatter.
 Using it frees you from ever thinking about formatting again.
-If you don't like how something looks, fix it in hindent and everyone's formatting will improve.
-Using hindent also avoids pointless arguments about style in pull requests.
+If you don't like how something looks, fix it in Brittany and everyone's formatting will improve.
+Using Brittany also avoids pointless arguments about style in pull requests.
 
 ## Write documentation with examples
 
@@ -191,20 +187,19 @@ Neither are laws.
 Usually functions are added to solve a specific problem.
 Show that problem in the documentation as an example.
 
-## Test with Tasty using Hspec
+## Test with Hspec
 
-Tasty provides a framework for running different kinds of tests with the same command line interface.
-It handles randomizing the test order, selecting which tests to run, and displaying their output.
-Hspec provides a library for writing human-readable tests.
-Use other testing libraries like QuickCheck when they make sense.
+[Hspec](https://hspec.github.io) is a library for writing human-readable tests.
+It is inspired by Ruby's RSpec.
+It integrates with QuickCheck and SmallCheck for writing property-based tests.
 
 ## Run tests on Travis CI
 
-Travis CI is free for open source projects and integrates with GitHub.
+[Travis CI](https://travis-ci.org) is free for open source projects and integrates with GitHub.
 Every time you push a commit to GitHub, Travis CI will run your test suite.
 This makes it easy to keep your package buildable.
 By default Travis CI runs on Linux, but you can also run on macOS.
-If you want to run your test suite on Windows, consider using AppVeyor.
+If you want to run your test suite on Windows, consider using [AppVeyor](https://www.appveyor.com).
 
 ## Keep executables small
 
@@ -219,7 +214,7 @@ import YourPackage (main)
 
 ## Benchmark with Criterion
 
-If your package needs to be fast, Criterion is the best tool for measuring it.
+If your package needs to be fast, [Criterion](http://www.serpentine.com/criterion/) is the best tool for measuring it.
 On the other hand if your package doesn't need to be fast, there's no sense in maintaining benchmarks for it.
 
 ## Automate releases
