@@ -1,1 +1,15 @@
+title: Haskell package checklist
+description: Write better Haskell packages
 theme: jekyll-theme-cayman
+repository: tfausak/haskell-package-checklist
+
+plugins:
+  - jekyll-default-layout
+  - jekyll-github-metadata
+  - jekyll-mentions
+  - jekyll-readme-index
+  - jekyll-titles-from-headings
+  - jemoji
+
+titles_from_headings:
+  strip_title: true
