@@ -161,5 +161,5 @@ exactly how some of these things are implemented.
 
 [1]: https://www.haskell.org/cabal/users-guide/developing-packages.html
 [2]: http://fvisser.nl/post/2013/may/28/towards-a-better-haskell-package.html
-[3]: {% post_url 2014-03-04-haskeleton-a-haskell-project-skeleton %}
-[4]: {% post_url 2016-11-15-parse-and-generate-rocket-league-replays-with-haskell %}
+[3]: http://taylor.fausak.me/2014/03/04/haskeleton-a-haskell-project-skeleton/
+[4]: http://taylor.fausak.me/2016/11/15/parse-and-generate-rocket-league-replays-with-haskell/
