@@ -1,5 +1,12 @@
 # Haskell package checklist
 
+:warning:
+This was originally a blog post.
+It is very opinionated.
+It is not kept up to date.
+You may be interested in [this Reddit discussion](https://www.reddit.com/r/haskell/comments/5iok3l/haskell_package_checklist/).
+Or [this one](https://www.reddit.com/r/haskell/comments/9dsi2y/an_opinionated_haskell_package_checklist/).
+
 This checklist covers everything you need to know about developing a Haskell package.
 The [Cabal user guide](https://cabal.readthedocs.io/en/latest/developing-packages.html#developing-packages) provides good low-level information,
 and @sebastiaanvisser's post "[Towards a better Haskell package](http://fvisser.nl/post/2013/may/28/towards-a-better-haskell-package.html)" gives some nice high-level guidance.
